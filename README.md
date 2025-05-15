@@ -1,6 +1,6 @@
 # Publisher — Event-Driven Architecture Tutorial
 
-## ❓ How much data will the publisher send to the message broker in one run?
+## How much data will the publisher send to the message broker in one run?
 
 In one execution, the publisher sends **5 events** to the RabbitMQ message broker.  
 Each event is a serialized `UserCreatedEventMessage` which consists of:
@@ -37,3 +37,9 @@ localhost:5672
 5672 is the default port used by RabbitMQ for AMQP connections
 
 This URL is the same in both the publisher and subscriber because they are both connecting to the same message broker instance, running locally on the same machine.
+
+## RabbitMQ Dashboard
+
+Screenshot of the RabbitMQ dashboard after setup:
+
+![RabbitMQ Dashboard](./rabbitmq_dashboard.png)
