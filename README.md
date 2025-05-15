@@ -56,3 +56,9 @@ Screenshot of Subscriber Command Prompt after cargo run:
 Screenshot of Subscriber Command Prompt after cargo run:
 
 ![Publisher](/publishercmd.png)
+
+## RabbitMQ Chart
+
+Screenshot of RabbitMQ Chart:
+
+![Chart](/chart.png)
