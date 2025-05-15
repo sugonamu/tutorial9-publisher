@@ -43,3 +43,16 @@ This URL is the same in both the publisher and subscriber because they are both 
 Screenshot of the RabbitMQ dashboard after setup:
 
 ![RabbitMQ Dashboard](./rabbitmq_dashboard.png)
+
+
+## Subscriber Command Prompt
+
+Screenshot of Subscriber Command Prompt after cargo run:
+
+![Subscriber](./subscribercmd.png)
+
+## Publisher Command Prompt
+
+Screenshot of Subscriber Command Prompt after cargo run:
+
+![Publisher](/publishercmd.png)
