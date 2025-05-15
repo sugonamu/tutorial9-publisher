@@ -44,21 +44,44 @@ Screenshot of the RabbitMQ dashboard after setup:
 
 ![RabbitMQ Dashboard](./rabbitmq_dashboard.png)
 
+## Sending and Processing Events
 
-## Subscriber Command Prompt
+When I run `cargo run` on the publisher, it sends **5 `UserCreatedEventMessage` events** to the RabbitMQ message broker. 
 
-Screenshot of Subscriber Command Prompt after cargo run:
+Each event includes a `user_id` and a `user_name` tagged with my NPM.
 
-![Subscriber](./subscribercmd.png)
+As soon as the events are published:
 
-## Publisher Command Prompt
+- RabbitMQ receives and queues them on the `user_created` queue.
+- The subscriber (already running) picks up each event and processes them one by one.
+- The subscriber prints the content of each message to the terminal.
 
-Screenshot of Subscriber Command Prompt after cargo run:
+This setup demonstrates **asynchronous decoupling** between services — the publisher doesn’t need to wait for the subscriber to finish processing.
 
-![Publisher](/publishercmd.png)
 
-## RabbitMQ Chart
+#### Publisher Output
 
-Screenshot of RabbitMQ Chart:
+![Publisher Terminal](publishercmd.png)
 
-![Chart](/chart.png)
+#### Subscriber Output
+
+![Subscriber Terminal](subscribercmd.png)
+
+#### RabbitMQ Spike (Dashboard)
+
+![RabbitMQ Queue Spike](chart.png)
+
+---
+
+### Explaining the Spike in RabbitMQ
+
+The spike seen in the **RabbitMQ dashboard** occurs because the publisher rapidly sends multiple events at once, causing a brief increase in queued messages.  
+Since the subscriber consumes events more slowly (especially with delays like `thread::sleep`), the dashboard shows:
+
+- A sudden **increase** in the "Queued messages" graph
+- A **gradual decrease** as the subscriber processes them
+
+This spike visually confirms that RabbitMQ is correctly buffering the events and delivering them to consumers at their own pace, which is a key benefit of **event-driven architecture**.
+
+---
+
